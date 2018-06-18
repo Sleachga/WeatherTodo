@@ -14,3 +14,7 @@ Snow -
 Day/Night - 
     * If the sun is up in the area bg is normal color if bg is down its dark color
 
+==================================================================================
+
+What are you working on? On new tab ask what you're working on and allow a quick text input
+
