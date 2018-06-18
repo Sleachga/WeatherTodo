@@ -11,9 +11,10 @@ function initRain() {
         init.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            len: Math.random() * 1,
+            len: Math.random() * 0.7,
             width: Math.random() * 2,
-            xs: -4 + Math.random() * 4 + 2,
+            xs: Math.random() * 1 - 0.5,
+            // xs: -4 + Math.random() * 4 + 2,
             ys: Math.random() * 10 + 15
         })
     }
@@ -24,6 +25,7 @@ function initRain() {
 }
 
 function drawRain() {
+    
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     for (let i = 0; i < particles.length; i++) {
