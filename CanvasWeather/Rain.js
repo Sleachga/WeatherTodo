@@ -11,11 +11,12 @@ function initRain() {
         init.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            len: Math.random() * 0.7,
-            width: Math.random() * 2,
+            len: Math.random() * 2,
+            width: Math.random() * 1,
             xs: Math.random() * 1 - 0.5,
             // xs: -4 + Math.random() * 4 + 2,
-            ys: Math.random() * 10 + 15
+            ys: Math.random() * 5 + 4,
+            splatter: false
         })
     }
 
@@ -25,7 +26,12 @@ function initRain() {
 }
 
 function drawRain() {
-    
+
+    let now = new Date().getTime(),
+        dt = now - (time || now);
+
+    time = now;
+
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     for (let i = 0; i < particles.length; i++) {
@@ -43,8 +49,10 @@ function drawRain() {
 function moveRain() {
     for (let i = 0; i < particles.length; i++) {
         let p = particles[i];
+        
         p.x += p.xs;
         p.y += p.ys;
+        
         if (p.x > canvas.width || p.y > canvas.height) {
             p.x = Math.random() * canvas.width;
             p.y = -20;

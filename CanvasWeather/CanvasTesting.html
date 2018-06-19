@@ -32,13 +32,22 @@
             initRain()
         });
 
-        if (weather == 'rain') {
-            initRain();
-        }
+        if (weather == 'rain') { initRain();}
+
+        let fps = 60;
+        // FOR MOBILE DEVICES
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+            fps = 29;
+
+        const interval = 1000 / fps;
+        let now, delta, time;
 
         setInterval(function(){
-            drawRain();
-        }, 30)
+            if (weather == 'rain') {
+                requestAnimationFrame(drawRain);
+                drawRain();
+            }
+        }, 1000/fps)
 
     </script>
 </html>
