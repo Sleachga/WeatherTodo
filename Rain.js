@@ -11,7 +11,7 @@ function initRain() {
         init.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            len: Math.random() * 2,
+            len: Math.random() * 2 + 2,
             width: Math.random() * 1,
             xs: Math.random() * 1 - 0.5,
             // xs: -4 + Math.random() * 4 + 2,
