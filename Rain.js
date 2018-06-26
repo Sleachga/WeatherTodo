@@ -1,6 +1,7 @@
 let particles = [];
 
 function initRain() {
+    $("body").css("background-color", "#061928");
     context.strokeStyle = '#8398AD';
     context.lineCap = 'round';
 

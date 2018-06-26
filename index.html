@@ -9,6 +9,7 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="Rain.js"></script>
+        <script src="Sun.js"></script>
     </head>
 
     <body>
@@ -17,7 +18,7 @@
 
     <script>
     
-        const weather = 'rain';
+        const weather = 'sun';
 
         let canvas = document.getElementById('canvas')
         let context = canvas.getContext('2d');
@@ -29,10 +30,12 @@
             canvas.width = $(window).width();
             canvas.height = $(window).height();
 
-            initRain()
+            if (weather == 'rain') initRain()
+            if (weather == 'sun') initSun()
         });
 
         if (weather == 'rain') { initRain();}
+        if (weather == 'sun') { initSun();}
 
         let fps = 60;
 
@@ -47,6 +50,10 @@
             if (weather == 'rain') {
                 requestAnimationFrame(drawRain);
                 drawRain();
+            }
+            else if (weather == 'sun') {
+                requestAnimationFrame(drawSun);
+                drawSun();
             }
         }, 1000/fps)
 
