@@ -18,7 +18,8 @@
 
     <script>
     
-        const weather = 'sun';
+        const weatherTypes = ['sun', 'rain'];
+        const weather = weatherTypes[Math.floor(Math.random() * weatherTypes.length)];
 
         let canvas = document.getElementById('canvas')
         let context = canvas.getContext('2d');
