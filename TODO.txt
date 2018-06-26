@@ -1,10 +1,11 @@
 Rain - Done
     * Rain animation
+    * Night and Day Mode (grey vs dark blue background)
 
 Cloudy - 
     * Clear color with clouds moving slowly across screen -> Loops
 
-Sunny - 
+Sunny - Done
     * Radial sun gradient that glows 
     * Slowly gets slightly bigger and smaller
 
