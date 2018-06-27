@@ -31,7 +31,7 @@ function drawSun() {
     // Make the shadow
     context.strokeStyle = "#ffffff";
     context.shadowColor = '#ffffff';
-    context.shadowBlur = 30;
+    context.shadowBlur = 50;
     context.shadowOffsetX = 0;
     context.shadowOffsetY = 0;
     context.stroke();
@@ -54,10 +54,19 @@ let sunrays = [0, 45, 90, 135, 180, 225, 270, 315];
 function drawSunRays() {
     for (let i = 0; i < sunrays.length; i++) {
         context.beginPath();
+
         context.moveTo(sunPos.x, sunPos.y);
-        context.lineTo(sunPos.x + rayLen * Math.cos(Math.PI * sunrays[i] / 180), 
-        sunPos.y + rayLen * Math.sin(Math.PI * sunrays[i] / 180));
-        context.stroke();
+        
+        context.lineTo(sunPos.x + rayLen * Math.cos(Math.PI * (sunrays[i] + 2) / 180), 
+            sunPos.y + rayLen * Math.sin(Math.PI * (sunrays[i] + 2) / 180));
+        
+        context.lineTo(sunPos.x + rayLen * Math.cos(Math.PI * (sunrays[i] - 2) / 180), 
+            sunPos.y + rayLen * Math.sin(Math.PI * (sunrays[i] - 2) / 180));
+        
+        context.lineTo(sunPos.x, sunPos.y);
+        context.fillStyle = "#ffffff";
+        context.fill();
+
         sunrays[i]+=0.1;
     }
 }
