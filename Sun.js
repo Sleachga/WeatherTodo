@@ -54,19 +54,15 @@ let sunrays = [0, 45, 90, 135, 180, 225, 270, 315];
 function drawSunRays() {
     for (let i = 0; i < sunrays.length; i++) {
         context.beginPath();
-
         context.moveTo(sunPos.x, sunPos.y);
-        
         context.lineTo(sunPos.x + rayLen * Math.cos(Math.PI * (sunrays[i] + 2) / 180), 
             sunPos.y + rayLen * Math.sin(Math.PI * (sunrays[i] + 2) / 180));
-        
         context.lineTo(sunPos.x + rayLen * Math.cos(Math.PI * (sunrays[i] - 2) / 180), 
             sunPos.y + rayLen * Math.sin(Math.PI * (sunrays[i] - 2) / 180));
-        
         context.lineTo(sunPos.x, sunPos.y);
         context.fillStyle = "#ffffff";
+        context.shadowBlur = 20;
         context.fill();
-
         sunrays[i]+=0.1;
     }
 }
