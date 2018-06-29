@@ -1,30 +1,29 @@
-let rainParticles = [];
+let snowParticles = [];
 
-function initRain() {
+function initSnow() {
     $("body").css("background-color", "#061928");
     context.strokeStyle = '#8398AD';
     context.lineCap = 'round';
 
     let init = [];
-    let maxParts = canvas.width;
+    let maxParts = canvas.width/3;
 
     for (let i = 0; i < maxParts; i++) {
         init.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            len: Math.random() * 2 + 2,
-            width: Math.random() * 1,
+            radius: Math.random() * 3 + 2,
             xs: Math.random() * 1 - 0.5,
-            ys: Math.random() * 5 + 4,
+            ys: Math.random() + 0.3,
         })
     }
 
     for (let i = 0; i < maxParts; i++) {
-        rainParticles[i] = init[i];
+        snowParticles[i] = init[i];
     }
 }
 
-function drawRain() {
+function drawSnow() {
 
     let now = new Date().getTime(),
         dt = now - (time || now);
@@ -33,21 +32,22 @@ function drawRain() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     
-    for (let i = 0; i < rainParticles.length; i++) {
-        let p = rainParticles[i]
+    for (let i = 0; i < snowParticles.length; i++) {
+        let p = snowParticles[i]
         context.lineWidth = p.width;
         context.beginPath();
         context.moveTo(p.x, p.y);
-        context.lineTo(p.x + p.len * p.xs, p.y + p.len * p.ys);
-        context.stroke();
+        context.arc(p.x, p.y, snowParticles[i].radius, 0, 2 * Math.PI);
+        context.fillStyle = '#ffffff';
+        context.fill();
     }
 
-    moveRain();
+    moveSnow();
 }
 
-function moveRain() {
-    for (let i = 0; i < rainParticles.length; i++) {
-        let p = rainParticles[i];
+function moveSnow() {
+    for (let i = 0; i < snowParticles.length; i++) {
+        let p = snowParticles[i];
         
         p.x += p.xs;
         p.y += p.ys;

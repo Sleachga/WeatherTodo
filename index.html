@@ -10,6 +10,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="Rain.js"></script>
         <script src="Sun.js"></script>
+        <script src="Snow.js"></script>
     </head>
 
     <body>
@@ -18,7 +19,7 @@
 
     <script>
     
-        const weatherTypes = ['sun', 'rain'];
+        const weatherTypes = ['sun', 'rain', 'snow'];
         const weather = weatherTypes[Math.floor(Math.random() * weatherTypes.length)];
 
         let canvas = document.getElementById('canvas')
@@ -31,12 +32,14 @@
             canvas.width = $(window).width();
             canvas.height = $(window).height();
 
-            if (weather == 'rain') initRain()
-            if (weather == 'sun') initSun()
+            if (weather == 'rain') { initRain(); }
+            if (weather == 'sun') { initSun(); }
+            if (weather == 'snow') { initSnow(); }
         });
 
-        if (weather == 'rain') { initRain();}
-        if (weather == 'sun') { initSun();}
+        if (weather == 'rain') { initRain(); }
+        if (weather == 'sun') { initSun(); }
+        if (weather == 'snow') { initSnow(); }
 
         let fps = 60;
 
@@ -55,6 +58,10 @@
             else if (weather == 'sun') {
                 requestAnimationFrame(drawSun);
                 drawSun();
+            }
+            else if (weather == 'snow') {
+                requestAnimationFrame(drawSnow);
+                drawSnow();
             }
         }, 1000/fps)
 

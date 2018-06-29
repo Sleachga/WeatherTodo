@@ -13,4 +13,4 @@ It will present you with a simple todo list and the background will display a mi
 * Rain :heavy_check_mark: 
 * Sun :heavy_check_mark:
 * Cloudy
-* Snow
+* Snow :heavy_check_mark:
