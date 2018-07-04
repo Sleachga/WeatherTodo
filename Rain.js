@@ -14,7 +14,7 @@ function initRain() {
             y: Math.random() * canvas.height,
             len: Math.random() * 2 + 2,
             width: Math.random() * 1,
-            xs: Math.random() * 1 - 0.5,
+            xs: Math.random() * 0.4 - 0.2,
             ys: Math.random() * 5 + 4,
         })
     }
