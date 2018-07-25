@@ -42,11 +42,11 @@ function drawSun() {
 // Find the distance from center of sun to bottom left corner (furthest corner)
 // Draw a ray to there and rotate it
 
-class sunray {
-    constructor(angle) {
-        this.angle = angle;
-    }
-}
+// class sunray {
+//     constructor(angle) {
+//         this.angle = angle;
+//     }
+// }
 
 let rayLen = 0;
 let sunrays = [0, 45, 90, 135, 180, 225, 270, 315];
