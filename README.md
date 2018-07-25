@@ -19,3 +19,4 @@ It will present you with a simple todo list and the background will display a mi
 
 * Create Todo List
 * Get Weather Data from Yahoo :heavy_check_mark:
+* Make a cookie for weather that lasts 3ish hours to limit queries

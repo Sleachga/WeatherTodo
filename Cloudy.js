@@ -15,7 +15,6 @@ function initCloudy() {
     for (let i = 0; i < numClouds; i++) {    
         cloud = {
             x: Math.random() * canvas.width,
-            // y: (1/3) * canvas.height + ((Math.random() * 200) - 100),
             y: Math.random() * canvas.height,
             speed: Math.random() >= 0.5 ? (-1 * ((Math.random() * 0.1) + minimumSpeed)) : (Math.random() * 0.1) + minimumSpeed
         };

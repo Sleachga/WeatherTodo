@@ -17,7 +17,7 @@
     <body>
         <canvas id='canvas' width="500" height="500px"></canvas>
         <div id="loading">
-            <h1>Gathering Weather Information... Please Wait</h1>
+            <h1>Gathering Weather Information In Your Area... Please Wait</h1>
     
             <!-- Found on https://loading.io/ -->
             <img id="loadingGif" src="Magnify-1s-200px.gif">
@@ -36,7 +36,6 @@
         const interval = 1000 / fps;
         let now, delta, time;
 
-        // ['sun', 'rain', 'snow', 'cloudy']
         const weatherCodes = {
             0: 'rain', 1: 'rain', 2: 'rain', 3: 'rain', 4: 'rain',
             5: 'snow', 6: 'rain', 7: 'snow', 8: 'rain', 9: 'rain',
