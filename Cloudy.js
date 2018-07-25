@@ -3,20 +3,23 @@ let clouds = []
 function initCloudy() {
     clouds = [];
 
-    numClouds = Math.floor(canvas.width/100) - 3;
+    numClouds = Math.floor(canvas.width/80) - 3;
     if (numClouds < 4) {
         numClouds = 4;
     }
 
     $("body").css("background-color", "#7EC6F6");
+
+    minimumSpeed = 0.05
+
     for (let i = 0; i < numClouds; i++) {    
         cloud = {
             x: Math.random() * canvas.width,
-            y: (1/3) * canvas.height + ((Math.random() * 200) - 100),
-            speed: (Math.random() * 1) - 0.5
+            // y: (1/3) * canvas.height + ((Math.random() * 200) - 100),
+            y: Math.random() * canvas.height,
+            speed: Math.random() >= 0.5 ? (-1 * ((Math.random() * 0.1) + minimumSpeed)) : (Math.random() * 0.1) + minimumSpeed
         };
         clouds.push(cloud);
-        console.log(clouds);
     }
 }
 
@@ -44,7 +47,7 @@ function drawClouds() {
     
     // Draw Clouds
     for (let i = 0; i < clouds.length; i++) {
-        drawCloud(clouds[i]);
+        drawCloud(clouds[i], context);
     }
 
     // Handle movement

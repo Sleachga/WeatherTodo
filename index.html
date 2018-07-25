@@ -16,56 +16,108 @@
 
     <body>
         <canvas id='canvas' width="500" height="500px"></canvas>
+        <h1 id="loading">Gathering Weather Information... Please Wait</h1>
     </body>
 
     <script>
-    
-        const weatherTypes = ['sun', 'rain', 'snow', 'cloudy'];
-        const weather = weatherTypes[Math.floor(Math.random() * weatherTypes.length)];
 
-        let canvas = document.getElementById('canvas')
+        let canvas = document.getElementById('canvas');
         let context = canvas.getContext('2d');
 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        if (weather == 'rain') initRain(); 
-        else if (weather == 'sun') initSun(); 
-        else if (weather == 'snow') initSnow(); 
-        else if (weather == 'cloudy') initCloudy(); 
-
-        $(window).resize(function(){
-            canvas.width = $(window).width();
-            canvas.height = $(window).height();
-
-            if (weather == 'rain') initRain(); 
-            else if (weather == 'sun') initSun(); 
-            else if (weather == 'snow') initSnow();
-            else if (weather == 'cloudy') initCloudy();
-        });
-
         let fps = 60;
         const interval = 1000 / fps;
         let now, delta, time;
 
-        setInterval(function(){
-            if (weather == 'rain') {
-                requestAnimationFrame(drawRain);
-                drawRain();
-            }
-            else if (weather == 'sun') {
-                requestAnimationFrame(drawSun);
-                drawSun();
-            }
-            else if (weather == 'snow') {
-                requestAnimationFrame(drawSnow);
-                drawSnow();
-            }
-            else if (weather == 'cloudy') {
-                requestAnimationFrame(drawClouds);
-                drawClouds();
-            }
-        }, 1000/fps)
+        // ['sun', 'rain', 'snow', 'cloudy']
+        const weatherCodes = {
+            0: 'rain', 1: 'rain', 2: 'rain', 3: 'rain', 4: 'rain',
+            5: 'snow', 6: 'rain', 7: 'snow', 8: 'rain', 9: 'rain',
+            10: 'rain', 11: 'rain', 12: 'rain', 13: 'snow', 14: 'snow',
+            15: 'snow', 16: 'snow', 17: 'snow', 18: 'snow', 19: 'sun',
+            20: 'cloudy', 21: 'cloudy', 22: 'cloudy', 23: 'cloudy', 
+            24: 'cloudy', 25: 'sun', 26: 'cloudy', 27: 'cloudy', 
+            28: 'cloudy', 29: 'cloudy', 30: 'cloudy', 31: 'sun',
+            32: 'sun', 33: 'sun', 34: 'sun', 35: 'rain', 36: 'sun',
+            37: 'rain', 38: 'rain', 39: 'rain', 40: 'rain', 41: 'snow',
+            42: 'snow', 43: 'snow', 44: 'cloudy', 45: 'rain', 46: 'snow',
+            47: 'rain'
+        }
 
+        // Get User Location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition, showError);
+        }
+
+        function setPosition(position) {
+            return fetch("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(SELECT%20woeid%20FROM%20geo.places%20WHERE%20text%3D%22(" 
+                + position.coords.latitude + "%2C" + position.coords.longitude 
+                + ")%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys")
+                .then(response => response.json())
+                .then(runApp);
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied location request.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request timed out.")
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occured.");
+                    break
+
+                // TODO -> Make canvas show error if no location found
+            }
+        }
+
+        function runApp(data) {
+            
+            $('#loading').hide();
+            
+            let code = parseInt(data.query.results.channel.item.condition.code);
+            let weather = weatherCodes[code];
+
+            if (weather == 'rain') initRain(); 
+            else if (weather == 'sun') initSun(); 
+            else if (weather == 'snow') initSnow(); 
+            else if (weather == 'cloudy') initCloudy(); 
+
+            $(window).resize(function(){
+                canvas.width = $(window).width();
+                canvas.height = $(window).height();
+
+                if (weather == 'rain') initRain(); 
+                else if (weather == 'sun') initSun(); 
+                else if (weather == 'snow') initSnow();
+                else if (weather == 'cloudy') initCloudy();
+            });
+
+            setInterval(function(){
+                if (weather == 'rain') {
+                    requestAnimationFrame(drawRain);
+                    drawRain();
+                }
+                else if (weather == 'sun') {
+                    requestAnimationFrame(drawSun);
+                    drawSun();
+                }
+                else if (weather == 'snow') {
+                    requestAnimationFrame(drawSnow);
+                    drawSnow();
+                }
+                else if (weather == 'cloudy') {
+                    requestAnimationFrame(drawClouds);
+                    drawClouds();
+                }
+            }, 1000/fps)
+        }
     </script>
 </html>
