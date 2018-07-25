@@ -15,6 +15,7 @@ It will present you with a simple todo list and the background will display a mi
 * Cloudy :heavy_check_mark:
 * Snow :heavy_check_mark:
 
-#### ToDo List (In-Progress):
+#### Other Stuff (In-Progress):
 
 * Create Todo List
+* Get Weather Data from Yahoo
