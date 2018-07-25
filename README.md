@@ -18,4 +18,4 @@ It will present you with a simple todo list and the background will display a mi
 #### Other Stuff (In-Progress):
 
 * Create Todo List
-* Get Weather Data from Yahoo
+* Get Weather Data from Yahoo :heavy_check_mark:
