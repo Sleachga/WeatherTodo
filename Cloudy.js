@@ -4,8 +4,8 @@ function initCloudy() {
     clouds = [];
 
     numClouds = Math.floor(canvas.width/100) - 3;
-    if (numClouds < 3) {
-        numClouds = 3;
+    if (numClouds < 4) {
+        numClouds = 4;
     }
 
     $("body").css("background-color", "#7EC6F6");
@@ -32,7 +32,7 @@ function drawCloud(cloud){
     
     // Make the shadow
     context.strokeStyle = "rgba(255, 255, 255, 0)";
-    context.shadowColor = '#000';
+    context.shadowColor = '#7D8A84';
     context.shadowBlur = 20;
     context.shadowOffsetX = 0;
     context.shadowOffsetY = 0;
