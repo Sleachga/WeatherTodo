@@ -1,6 +1,6 @@
 # Weather Todo
 
-[Click for current live example (randomly chooses weather currently)](https://sleachga.github.io/WeatherTodo/)
+[Click for current live example](https://sleachga.github.io/WeatherTodo/)
 
 **NOTE: This is a work in progress**
 
