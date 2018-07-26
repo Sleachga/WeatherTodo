@@ -19,6 +19,7 @@ body {
     position: absolute;
     display: none;
     grid-template-columns: auto auto;
+    grid-template-rows: 7vw auto;
     background-color: rgba(0, 0, 0, 0.6);
     width: 70%;
     height: 70%;
@@ -37,6 +38,8 @@ body {
     font-size: 7vw;
     padding-left: 10%;
     text-align: center;
+    vertical-align: middle;
+    margin-top: 5px;
 }
 
 #temperature {
@@ -47,4 +50,15 @@ body {
     display: inline-block;
     text-align: center;
     padding-right: 10%;
+    vertical-align: middle;
+    margin-top: 5px;
+}
+
+#todoList {
+    display: grid;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 4;
+    background-color: white;
+    margin: 20px;
+    text-align: center;
 }

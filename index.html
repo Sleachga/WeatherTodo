@@ -24,8 +24,9 @@
         </div>
 
         <div id="container">
-            <h1 id="weatherText">Weather</h1>
-            <h1 id="temperature">60&#8457;</h1>
+            <span id="weatherText">Weather</span>
+            <span id="temperature">60&#8457;</span>
+            <div id="todoList">ToDo list will be here</div>
         </div>
     </body>
 
@@ -93,12 +94,10 @@
             $('#container').show();
             $('#container').css('display', 'grid');
             
-            console.log(data);
-
             let weatherText = data.query.results.channel.item.condition.text;
             let temperature = data.query.results.channel.item.condition.temp;
             
-            $('#weatherText').text(weatherText);
+            $('#weatherText').text(weatherText.toUpperCase());
             $('#temperature').html(temperature + '&#8457;');
             
             let code = parseInt(data.query.results.channel.item.condition.code);
