@@ -14,3 +14,37 @@ body {
     margin-right: auto;
     width: 100%;
 }
+
+#container {
+    position: absolute;
+    display: none;
+    grid-template-columns: auto auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 70%;
+    height: 70%;
+    border-radius: 25px;
+   
+    /* Center it */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#weatherText {
+    display: inline-grid;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7vw;
+    padding-left: 10%;
+    text-align: center;
+}
+
+#temperature {
+    display: inline-grid;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7vw;
+    display: inline-block;
+    text-align: center;
+    padding-right: 10%;
+}

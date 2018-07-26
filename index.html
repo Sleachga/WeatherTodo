@@ -22,6 +22,11 @@
             <!-- Found on https://loading.io/ -->
             <img id="loadingGif" src="Magnify-1s-200px.gif">
         </div>
+
+        <div id="container">
+            <h1 id="weatherText">Weather</h1>
+            <h1 id="temperature">60&#8457;</h1>
+        </div>
     </body>
 
     <script>
@@ -85,6 +90,16 @@
         function runApp(data) {
             
             $('#loading').hide();
+            $('#container').show();
+            $('#container').css('display', 'grid');
+            
+            console.log(data);
+
+            let weatherText = data.query.results.channel.item.condition.text;
+            let temperature = data.query.results.channel.item.condition.temp;
+            
+            $('#weatherText').text(weatherText);
+            $('#temperature').html(temperature + '&#8457;');
             
             let code = parseInt(data.query.results.channel.item.condition.code);
             let weather = weatherCodes[code];
