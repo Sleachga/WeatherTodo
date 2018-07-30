@@ -26,7 +26,10 @@
         <div id="container">
             <span id="weatherText">Weather</span>
             <span id="temperature">60&#8457;</span>
-            <div id="todoList">ToDo list will be here</div>
+            <div id="todoList">
+                <input type="text" id="todoInput" placeholder="Enter Todo...">
+                <ul id="todoItems"></ul>
+            </div>
         </div>
     </body>
 
@@ -97,9 +100,92 @@
             let weatherText = data.query.results.channel.item.condition.text;
             let temperature = data.query.results.channel.item.condition.temp;
             
+            let celsius = false;
+
             $('#weatherText').text(weatherText.toUpperCase());
+            numTextChars = weatherText.length;
+            $('#weatherText').css('font-size', (numTextChars / 3) + 'vw');
+
+            $('#temperature').css('font-size', (numTextChars / 3) + 'vw');
             $('#temperature').html(temperature + '&#8457;');
+            $('#temperature').click(function(){
+                if (!celsius) {
+                    temperature = (temperature - 32) * 5/9;
+                    $('#temperature').html(Math.floor(temperature) + '&#8451;');
+                }
+                else {
+                    temperature = (temperature * 9/5) + 32;
+                    $('#temperature').html(Math.floor(temperature) + '&#8457;');
+                }
+                celsius = !celsius;
+            });
+
+            // ------------- Handle Todo List Stuff -------------------- //
+
+            let todos = [
+                "Do Stuff!",
+                "Do Another Stuff!",
+                "DO MORE",
+                "etc..."
+            ]
+
+            for (i in todos) {
+                $('#todoItems').append('<li>' + todos[i] + '</li>');
+            }
+
+            let liList = document.getElementsByTagName("LI");
+            for (let i = 0; i < liList.length; i++) {
+                let span = document.createElement("SPAN");
+                let x = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(x);
+                liList[i].appendChild(span);
+            }
+
+            let close = document.getElementsByClassName("close");
+            for (let i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                    let div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+
+            let list = document.getElementById('todoItems');
+            list.addEventListener('click', function(e) {
+                if (e.target.tagName === 'LI') {
+                    e.target.classList.toggle('checked');
+                }
+            }, false);
+
+            window.onkeyup = function(e) {
+                let key = e.keycode ? e.keycode : e.which;
+                if (key == 13) {
+                    if ($('#todoInput').val().length > 0) {
+                        let li = document.createElement("li");
+                        let t = document.createTextNode($('#todoInput').val());
+                        li.appendChild(t);
+                        document.getElementById("todoItems").appendChild(li);
+
+                        document.getElementById("todoInput").value = "";
+
+                        let span = document.createElement("SPAN");
+                        let text = document.createTextNode("\u00D7");
+                        span.className = "close";
+                        span.appendChild(text);
+                        li.appendChild(span);
+                    }
+
+                    for (let i = 0; i < close.length; i++) {
+                        close[i].onclick = function() {
+                            let div = this.parentElement;
+                            div.style.display = "none";
+                        }
+                    }
+                }
+            }
             
+            // --------------------------------------------------------- //
+
             let code = parseInt(data.query.results.channel.item.condition.code);
             let weather = weatherCodes[code];
 

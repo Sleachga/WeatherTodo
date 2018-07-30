@@ -22,13 +22,15 @@ body {
     grid-template-rows: 7vw auto;
     background-color: rgba(0, 0, 0, 0.6);
     width: 70%;
-    height: 70%;
+    height: 80%;
     border-radius: 25px;
    
     /* Center it */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    border: 2px solid white;
 }
 
 #weatherText {
@@ -36,10 +38,11 @@ body {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 7vw;
-    padding-left: 10%;
     text-align: center;
-    vertical-align: middle;
-    margin-top: 5px;
+    /* vertical-align: middle; */
+    /* margin-top: 5px; */
+    padding-top: 0 !important;
+    align-self: center;
 }
 
 #temperature {
@@ -47,18 +50,91 @@ body {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 7vw;
-    display: inline-block;
+    display: inline-block;   
     text-align: center;
     padding-right: 10%;
-    vertical-align: middle;
-    margin-top: 5px;
+    padding-top: 0 !important;
+    align-self: center;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #todoList {
-    display: grid;
     grid-column: 1 / span 2;
     grid-row: 2 / span 4;
     background-color: white;
-    margin: 20px;
+    margin: 0 20px 20px 20px;
     text-align: center;
+    border-radius: 3px;
+    overflow: scroll;
+}
+
+#todoItems {
+    padding-left: 0;
+    margin: 0;
+}
+
+#todoItems li {
+    font-size: 2vw;
+    list-style-type: none;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 0.2s;
+    padding-left: calc((2vw + 20px) / 2);
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#todoItems li:hover {
+    background: #848787;
+    margin: 0;
+}
+
+#todoItems li.checked {
+    text-decoration: line-through;
+}
+
+#todoItems li:nth-child(2n){
+    background: rgb(224, 225, 228);
+}
+
+#todoItems li:nth-child(2n):hover{
+    background: #848787;
+}
+
+.close {
+    float: right;
+    padding-right: 10px;
+    padding-left: 10px;
+    right: 0;
+    top: 0;
+}
+
+.close:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+#todoInput {
+    width: 100%;
+    height: 2vw;
+    font-size: 2vw;
+    text-align: center;
+    border: none;
+    border-radius: 0;
+    padding: 10px 0 10px 0;
+    background: #9E9FA2;
+    color: white;
+}
+
+.addBtn:hover {
+    background: #bbb;
 }
