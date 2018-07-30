@@ -19,5 +19,5 @@ It will present you with a simple todo list and the background will display a mi
 
 * Create Todo List :heavy_check_mark:
 * Get Weather Data from Yahoo :heavy_check_mark:
-* Keep persistent data
+* Keep persistent data :heavy_check_mark:
 * Make a cookie for weather that lasts 3ish hours to limit queries
