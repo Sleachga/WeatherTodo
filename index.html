@@ -91,6 +91,10 @@
             }
         }
 
+        function S4() {
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
+        }   
+
         function runApp(data) {
             
             $('#loading').hide();
@@ -121,16 +125,23 @@
             });
 
             // ------------- Handle Todo List Stuff -------------------- //
+            let todos = {};
 
-            let todos = [
-                "Do Stuff!",
-                "Do Another Stuff!",
-                "DO MORE",
-                "etc..."
-            ]
+            if (localStorage.getItem("todos") === null) {
+                localStorage.setItem("todos", JSON.stringify(todos));
+            }
+            else {
+                todos = JSON.parse(localStorage.getItem("todos"));
+            }
 
-            for (i in todos) {
-                $('#todoItems').append('<li>' + todos[i] + '</li>');
+            for (let key in todos) {
+                if (todos[key].checked) {
+                    $('#todoItems').append('<li class="checked" id="' + key + '">' + todos[key].text + '</li>');
+                }
+                else {
+                    $('#todoItems').append('<li id="' + key + '">' + todos[key].text + '</li>');
+                }
+                
             }
 
             let liList = document.getElementsByTagName("LI");
@@ -146,6 +157,8 @@
             for (let i = 0; i < close.length; i++) {
                 close[i].onclick = function() {
                     let div = this.parentElement;
+                    delete todos[div.id];
+                    localStorage.setItem("todos", JSON.stringify(todos));
                     div.style.display = "none";
                 }
             }
@@ -154,6 +167,9 @@
             list.addEventListener('click', function(e) {
                 if (e.target.tagName === 'LI') {
                     e.target.classList.toggle('checked');
+                    let id = e.target.id;
+                    todos[id].checked = !todos[id].checked;
+                    localStorage.setItem("todos", JSON.stringify(todos));
                 }
             }, false);
 
@@ -161,7 +177,21 @@
                 let key = e.keycode ? e.keycode : e.which;
                 if (key == 13) {
                     if ($('#todoInput').val().length > 0) {
+                        // Gen unique ID
+                        let uuid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase(); 
+                        
+                        // CREATE OBJECT
+                        
+                        todos[uuid] = {
+                            checked: false,
+                            text: $('#todoInput').val()
+                        };
+
+                        localStorage.setItem("todos", JSON.stringify(todos));
+
                         let li = document.createElement("li");
+                        li.setAttribute("id", uuid);
+
                         let t = document.createTextNode($('#todoInput').val());
                         li.appendChild(t);
                         document.getElementById("todoItems").appendChild(li);
@@ -178,6 +208,8 @@
                     for (let i = 0; i < close.length; i++) {
                         close[i].onclick = function() {
                             let div = this.parentElement;
+                            delete todos[div.id];
+                            localStorage.setItem("todos", JSON.stringify(todos));
                             div.style.display = "none";
                         }
                     }
