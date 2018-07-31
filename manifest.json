@@ -1,10 +1,15 @@
 {
     "name": "WeatherTodo",
-    "version": "1.0",
+    "version": "0.0.0.2",
     "description": "Extension that shows a weather animation and todolist",
     "manifest_version": 2,
-    "permissions": ["storage"],
+    "permissions": ["storage", "geolocation"],
     "chrome_url_overrides": {
         "newtab": "index.html"
+    },
+    "icons": {
+        "16": "weathertodo_16.png",
+        "48": "weathertodo_48.png",
+        "128": "weathertodo_128.png"
     }
 }
