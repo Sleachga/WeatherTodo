@@ -10,16 +10,16 @@ This application is intended to be a chrome newtab extension.
 
 It will present you with a simple todo list and the background will display a minimalistic weather animation depending on the weather in your area.  
 
-This finally works as a chrome extension!
+**UPDATE:** This finally works as a chrome extension!
 
-#### Weather Animations (Complete):
+#### Weather Animations :partly_sunny: (Complete):
 
 * Rain :heavy_check_mark: 
 * Sun :heavy_check_mark:
 * Cloudy :heavy_check_mark:
 * Snow :heavy_check_mark:
 
-#### Other Stuff (Complete):
+#### Other Stuff :tada: (Complete):
 
 * Create Todo List :heavy_check_mark:
 * Get Weather Data from Yahoo :heavy_check_mark:
