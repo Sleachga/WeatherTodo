@@ -8,6 +8,8 @@ This application is intended to be a chrome newtab extension.
 
 It will present you with a simple todo list and the background will display a minimalistic weather animation depending on the weather in your area.  
 
+This finally works as a chrome extension!
+
 #### Weather Animations (Complete):
 
 * Rain :heavy_check_mark: 
@@ -25,3 +27,5 @@ It will present you with a simple todo list and the background will display a mi
 #### Ideas :thumbsup:
 
 * Night and Day colors
+* Fix Header Sizing
+* Add refresh button that clears cookies and refreshes page
