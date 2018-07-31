@@ -46,6 +46,12 @@ let canvas = document.getElementById('canvas');
             return "";
         }
         
+        function deleteCookie(cname) {
+            if (getCookie(cname)) {
+                document.cookie = cname + "=" + cvalue + ";" + "expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/";
+            }
+        }
+
         let cookiesExist = false;
         let weather = getCookie("weather");
         if (weather == "") {
@@ -93,6 +99,7 @@ let canvas = document.getElementById('canvas');
             $('#loading').hide();
             $('#container').show();
             $('#container').css('display', 'grid');
+            $('#refreshWeather').show();
             
             let weatherText, temperature, code;
 
@@ -223,6 +230,13 @@ let canvas = document.getElementById('canvas');
                 }
             }
             
+            $('#refreshWeather').click(function(){
+                deleteCookie("weather");
+                deleteCookie("temperature");
+                deleteCookie("code");
+                window.location.reload(true);
+            });
+
             // ----------------------- Weather Animation Logic---------------------------- //
 
             let weather = weatherCodes[code];
