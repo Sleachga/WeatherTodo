@@ -48,7 +48,7 @@ let canvas = document.getElementById('canvas');
         
         function deleteCookie(cname) {
             if (getCookie(cname)) {
-                document.cookie = cname + "=" + cvalue + ";" + "expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/";
+                document.cookie = cname + "=" + "deleted;" + "expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/";
             }
         }
 
