@@ -1,6 +1,6 @@
 {
     "name": "WeatherTodo",
-    "version": "0.0.0.2",
+    "version": "0.0.0.3",
     "description": "Extension that shows a weather animation and todolist",
     "manifest_version": 2,
     "permissions": ["storage", "geolocation"],
