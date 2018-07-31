@@ -2,6 +2,8 @@
 
 [Click for current live example](https://sleachga.github.io/WeatherTodo/)
 
+[Click to install on chrome web store](https://chrome.google.com/webstore/detail/weathertodo/ioeknhkeddalakhcenifpfocmnjpcjei)
+
 **NOTE: This is a work in progress**
 
 This application is intended to be a chrome newtab extension.  

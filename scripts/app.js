@@ -137,7 +137,6 @@ let canvas = document.getElementById('canvas');
                 $('#temperature').css('font-size', '6vw');
             }
 
-        
             $('#temperature').html(temperature + '&#8457;');
             $('#temperature').click(function(){
                 if (!celsius) {
