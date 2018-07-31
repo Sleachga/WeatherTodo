@@ -59,9 +59,44 @@
             47: 'rain'
         }
 
-        // Get User Location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(setPosition, showError);
+        // CHECK FOR COOKIES
+
+        // Weather Cookie
+
+        function setCookie(cname, cvalue, exdays) {
+            let d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        } 
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        
+        let cookiesExist = false;
+        let weather = getCookie("weather");
+        if (weather == "") {
+            // Get User Location and start app
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(setPosition, showError);
+            }
+        }
+        else {
+            cookiesExist = true;
+            runApp(null)
         }
 
         function setPosition(position) {
@@ -101,9 +136,20 @@
             $('#container').show();
             $('#container').css('display', 'grid');
             
-            let weatherText = data.query.results.channel.item.condition.text;
-            let temperature = data.query.results.channel.item.condition.temp;
-            
+            let weatherText, temperature;
+
+            if (cookiesExist) { // No Cookies
+                weatherText = getCookie("weather");
+                temperature = getCookie("temperature");
+            }
+            else {
+                weatherText = data.query.results.channel.item.condition.text;
+                setCookie("weather", weatherText, (1/24)) // Set the cookie for 1 hour
+
+                temperature = data.query.results.channel.item.condition.temp;
+                setCookie("temperature", temperature, (1/24)) // Set the cookie for 1 hour
+            }
+
             let celsius = false;
 
             $('#weatherText').text(weatherText.toUpperCase());
