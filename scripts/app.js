@@ -22,9 +22,6 @@ let canvas = document.getElementById('canvas');
             47: 'rain'
         }
 
-        // CHECK FOR COOKIES
-
-        // Weather Cookie
 
         function setCookie(cname, cvalue, exdays) {
             let d = new Date();
@@ -84,8 +81,6 @@ let canvas = document.getElementById('canvas');
                 case error.UNKNOWN_ERROR:
                     alert("An unknown error occured.");
                     break
-
-                // TODO -> Make canvas show error if no location found
             }
         }
 
@@ -138,6 +133,7 @@ let canvas = document.getElementById('canvas');
             });
 
             // ------------- Handle Todo List Stuff -------------------- //
+
             let todos = {};
 
             if (localStorage.getItem("todos") === null) {
@@ -192,9 +188,7 @@ let canvas = document.getElementById('canvas');
                     if ($('#todoInput').val().length > 0) {
                         // Gen unique ID
                         let uuid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase(); 
-                        
-                        // CREATE OBJECT
-                        
+                                                
                         todos[uuid] = {
                             checked: false,
                             text: $('#todoInput').val()
@@ -229,7 +223,7 @@ let canvas = document.getElementById('canvas');
                 }
             }
             
-            // --------------------------------------------------------- //
+            // ----------------------- Weather Animation Logic---------------------------- //
 
             let weather = weatherCodes[code];
 
