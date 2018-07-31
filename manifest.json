@@ -8,8 +8,8 @@
         "newtab": "index.html"
     },
     "icons": {
-        "16": "weathertodo_16.png",
-        "48": "weathertodo_48.png",
-        "128": "weathertodo_128.png"
+        "16": "images/weathertodo_16.png",
+        "48": "images/weathertodo_48.png",
+        "128": "images/weathertodo_128.png"
     }
 }
