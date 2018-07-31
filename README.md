@@ -15,9 +15,13 @@ It will present you with a simple todo list and the background will display a mi
 * Cloudy :heavy_check_mark:
 * Snow :heavy_check_mark:
 
-#### Other Stuff (In-Progress):
+#### Other Stuff (Complete):
 
 * Create Todo List :heavy_check_mark:
 * Get Weather Data from Yahoo :heavy_check_mark:
 * Keep persistent data :heavy_check_mark:
-* Make a cookie for weather that lasts 3ish hours to limit queries
+* Make a cookie for weather that lasts an hour to limit queries :heavy_check_mark:
+
+#### Ideas :thumbsup:
+
+* Night and Day colors
