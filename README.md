@@ -26,7 +26,7 @@ It will present you with a simple todo list and the background will display a mi
 * Keep persistent data :heavy_check_mark:
 * Make a cookie for weather that lasts an hour to limit queries :heavy_check_mark:
 
-#### Ideas :thumbsup:
+#### Ideas :thumbsup: (In-Progress):
 
 * Night and Day colors
 * Fix Header Sizing :heavy_check_mark:
