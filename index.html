@@ -136,18 +136,22 @@
             $('#container').show();
             $('#container').css('display', 'grid');
             
-            let weatherText, temperature;
+            let weatherText, temperature, code;
 
             if (cookiesExist) { // No Cookies
                 weatherText = getCookie("weather");
                 temperature = getCookie("temperature");
+                code = getCookie("code");
             }
             else {
                 weatherText = data.query.results.channel.item.condition.text;
-                setCookie("weather", weatherText, (1/24)) // Set the cookie for 1 hour
+                setCookie("weather", weatherText, (1/24)); // Set the cookie for 1 hour
 
                 temperature = data.query.results.channel.item.condition.temp;
-                setCookie("temperature", temperature, (1/24)) // Set the cookie for 1 hour
+                setCookie("temperature", temperature, (1/24));
+
+                code = parseInt(data.query.results.channel.item.condition.code);
+                setCookie("code", code, (1/24));
             }
 
             let celsius = false;
@@ -264,7 +268,6 @@
             
             // --------------------------------------------------------- //
 
-            let code = parseInt(data.query.results.channel.item.condition.code);
             let weather = weatherCodes[code];
 
             if (weather == 'rain') initRain(); 
