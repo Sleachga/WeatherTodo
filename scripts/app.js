@@ -123,9 +123,21 @@ let canvas = document.getElementById('canvas');
 
             $('#weatherText').text(weatherText.toUpperCase());
             numTextChars = weatherText.length;
-            $('#weatherText').css('font-size', (numTextChars / 3) + 'vw');
 
-            $('#temperature').css('font-size', (numTextChars / 3) + 'vw');
+            if (numTextChars > 20) {
+                $('#weatherText').css('font-size', '3vw');
+                $('#temperature').css('font-size', '3vw');
+            }
+            else if (numTextChars <= 20 && numTextChars > 10) {
+                $('#weatherText').css('font-size', '4vw');
+                $('#temperature').css('font-size', '4vw');
+            }
+            else {
+                $('#weatherText').css('font-size', '6vw');
+                $('#temperature').css('font-size', '6vw');
+            }
+
+        
             $('#temperature').html(temperature + '&#8457;');
             $('#temperature').click(function(){
                 if (!celsius) {

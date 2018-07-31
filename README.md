@@ -27,5 +27,5 @@ This finally works as a chrome extension!
 #### Ideas :thumbsup:
 
 * Night and Day colors
-* Fix Header Sizing
+* Fix Header Sizing :heavy_check_mark:
 * Add refresh button that clears cookies and refreshes page
