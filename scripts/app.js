@@ -90,16 +90,28 @@ function deleteCookie(cname) {
   }
 }
 
-let cookiesExist = false;
-let weather = getCookie("weather");
-if (weather == "") {
-  // Get User Location and start app
-  if (navigator.geolocation) {
+// Check if local variables exist or have expired and start app accordingly
+let localStorageExists;
+let weatherInfo = localStorage.getItem("weatherInfo");
+weatherInfo == null
+  ? (localStorageExists = false)
+  : (localStorageExists = true);
+
+// If localstorage exists, check if expired
+if (localStorageExists) {
+  weatherInfo = JSON.parse(weatherInfo);
+  let now = new Date();
+  if (now > weatherInfo.exp) {
+    localStorageExists = false;
     navigator.geolocation.getCurrentPosition(setPosition, showError);
+  } else {
+    // Get User Location and start app
+    if (navigator.geolocation) {
+      runApp(null);
+    }
   }
 } else {
-  cookiesExist = true;
-  runApp(null);
+  navigator.geolocation.getCurrentPosition(setPosition, showError);
 }
 
 function setPosition(position) {
@@ -142,20 +154,31 @@ function runApp(data) {
 
   let weatherText, temperature, code;
 
-  if (cookiesExist) {
+  if (localStorageExists) {
     // No Cookies
-    weatherText = getCookie("weather");
-    temperature = getCookie("temperature");
-    code = getCookie("code");
+    weatherText = weatherInfo.weather;
+    temperature = weatherInfo.temperature;
+    code = weatherInfo.code;
   } else {
+    // Get Current Time
+    let now = new Date();
+    let expireDate = new Date(now.getTime() + 1000 * 60 * 60);
+
     weatherText = data.current.condition.text;
-    setCookie("weather", weatherText, 1 / 24); // Set the cookie for 1 hour
-
     temperature = data.current.feelslike_f;
-    setCookie("temperature", temperature, 1 / 24);
-
     code = parseInt(data.current.condition.code);
-    setCookie("code", code, 1 / 24);
+
+    let weatherInfo = JSON.stringify({
+      weather: weatherText,
+      temperature: temperature,
+      code: code,
+      exp: expireDate
+    });
+
+    localStorage.setItem("weatherInfo", weatherInfo);
+
+    // DEBUG PURPOSES
+    console.log("Code Cookie: " + getCookie("code"));
   }
 
   let celsius = false;
@@ -296,9 +319,7 @@ function runApp(data) {
   };
 
   $("#refreshWeather").click(function() {
-    deleteCookie("weather");
-    deleteCookie("temperature");
-    deleteCookie("code");
+    localStorage.removeItem("weatherInfo");
     window.location.reload(true);
   });
 
