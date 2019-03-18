@@ -10,53 +10,59 @@ const interval = 1000 / fps;
 let now, delta, time;
 
 const weatherCodes = {
-  cloudy: [1003, 1006, 1009, 1030, 1135],
-  rain: [
-    1063,
-    1072,
-    1087,
-    1150,
-    1153,
-    1168,
-    1171,
-    1180,
-    1183,
-    1186,
-    1189,
-    1192,
-    1195,
-    1198,
-    1240,
-    1243,
-    1246,
-    1249,
-    1252,
-    1264,
-    1273,
-    1276
+  cloudy: [
+    1003, // Partly Cloudy
+    1006, // Cloudy
+    1009, // Overcast
+    1030, // Mist
+    1135 // Fog
   ],
-  sun: [1000],
+  rain: [
+    1063, // Patchy Rain Possible
+    1072, // Patchy freezing drizzle possible
+    1087, // Thundery outbreaks possible
+    1150, // Patchy light drizzle
+    1153, // Light drizzle
+    1168, // Freezing drizzle
+    1171, // Heavy freezing drizzle
+    1180, // Patchy light rain
+    1183, // Light rain
+    1186, // Moderate rain at times
+    1189, // Moderate rain
+    1192, // Heavy rain at times
+    1195, // Heavy rain
+    1198, // Light freezing rain
+    1240, // Light rain shower
+    1243, // Moderate or heavy rain shower
+    1246, // Torrential rain shower
+    1249, // Light sleet showers
+    1252, // Moderate or heavy sleet showers
+    1264, // Moderate or heavy showers of ice pellets
+    1273, // Patchy light rain with thunder
+    1276 // Moderate or heavy rain with thunder
+  ],
+  sun: [1000], // Sunny
   snow: [
-    1066,
-    1069,
-    1114,
-    1117,
-    1147,
-    1201,
-    1204,
-    1207,
-    1210,
-    1213,
-    1216,
-    1219,
-    1222,
-    1225,
-    1237,
-    1255,
-    1258,
-    1261,
-    1279,
-    1282
+    1066, // Patchy snow possible
+    1069, // Patchy sleet possible
+    1114, // Blowing snow
+    1117, // Blizzard
+    1147, // Freezing fog
+    1201, // Moderate or heavy freezing rain
+    1204, // Light sleet
+    1207, // Moderate or heavy sleet
+    1210, // Patchy light snow
+    1213, // Light snow
+    1216, // Patchy moderate snow
+    1219, // Moderate snow
+    1222, // Patchy heavy snow
+    1225, // Heavy snow
+    1237, // Ice pellets
+    1255, // Light snow showers
+    1258, // Moderate or heavy snow showers
+    1261, // Light showers of ice pellets
+    1279, // Patchy light snow with thunder
+    1282 // Moderate or heavy snow with thunder
   ]
 };
 
