@@ -1,5 +1,7 @@
 # Weather Todo
 
+[Click to view a live example](https://sleachga.github.io/WeatherTodo/)
+
 [Click to view on chrome web store](https://chrome.google.com/webstore/detail/weathertodo/ioeknhkeddalakhcenifpfocmnjpcjei)
 
 **NOTE: This is a work in progress**
