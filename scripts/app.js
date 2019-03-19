@@ -97,7 +97,7 @@ if (localStorageExists) {
 
 function setPosition(position) {
   return fetch(
-    "http://api.apixu.com/v1/current.json?key=981a745ea32a46bda29231427191503&q=" +
+    "https://api.apixu.com/v1/current.json?key=981a745ea32a46bda29231427191503&q=" +
       position.coords.latitude +
       "," +
       position.coords.longitude
