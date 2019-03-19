@@ -164,7 +164,10 @@ function runApp(data) {
   $("#weatherText").text(weatherText.toUpperCase());
   numTextChars = weatherText.length;
 
-  if (numTextChars > 20) {
+  if (numTextChars > 30) {
+    $("#weatherText").css("font-size", "2vw");
+    $("#temperature").css("font-size", "2vw");
+  } else if (numTextChars <= 30 && numTextChars > 20) {
     $("#weatherText").css("font-size", "3vw");
     $("#temperature").css("font-size", "3vw");
   } else if (numTextChars <= 20 && numTextChars > 10) {
