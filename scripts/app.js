@@ -66,48 +66,23 @@ const weatherCodes = {
   ]
 };
 
-function setCookie(cname, cvalue, exdays) {
-  let d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(";");
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == " ") {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function deleteCookie(cname) {
-  if (getCookie(cname)) {
-    document.cookie =
-      cname + "=" + "deleted;" + "expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/";
-  }
-}
-
 // Check if local variables exist or have expired and start app accordingly
 let localStorageExists;
 let weatherInfo = localStorage.getItem("weatherInfo");
+
+// If weatherInfo is null, local storage doesn't exist yet (1st time)
 weatherInfo == null
   ? (localStorageExists = false)
   : (localStorageExists = true);
 
-// If localstorage exists, check if expired
+// If localstorage exists, check if expired.  Start app accordingly afterwards.
 if (localStorageExists) {
   weatherInfo = JSON.parse(weatherInfo);
   let now = new Date();
-  if (now > weatherInfo.exp) {
+  let expireDate = new Date(weatherInfo.exp);
+
+  // If current time is past weatherInfo expiration then start app and tell it to overwrite weatherInfo
+  if (now > expireDate) {
     localStorageExists = false;
     navigator.geolocation.getCurrentPosition(setPosition, showError);
   } else {
@@ -161,17 +136,17 @@ function runApp(data) {
   let weatherText, temperature, code;
 
   if (localStorageExists) {
-    // No Cookies
+    // Set vars from local storage
     weatherText = weatherInfo.weather;
     temperature = weatherInfo.temperature;
     code = weatherInfo.code;
   } else {
     // Get Current Time
     let now = new Date();
-    let expireDate = new Date(now.getTime() + 1000 * 60 * 60);
+    let expireDate = new Date(now.getTime() + 1000 * 60 * 60); // Set expire date for one hour in the future
 
     weatherText = data.current.condition.text;
-    temperature = data.current.feelslike_f;
+    temperature = Math.round(parseInt(data.current.feelslike_f));
     code = parseInt(data.current.condition.code);
 
     let weatherInfo = JSON.stringify({
@@ -182,9 +157,6 @@ function runApp(data) {
     });
 
     localStorage.setItem("weatherInfo", weatherInfo);
-
-    // DEBUG PURPOSES
-    console.log("Code Cookie: " + getCookie("code"));
   }
 
   let celsius = false;
