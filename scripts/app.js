@@ -247,8 +247,15 @@ function runApp(data) {
 
   window.onkeyup = function(e) {
     let key = e.keycode ? e.keycode : e.which;
-    if (key == 13) {
-      if ($("#todoInput").val().length > 0) {
+
+    let todoText = $("#todoInput")
+      .val()
+      .trim();
+
+    let maxTodoLength = 60;
+
+    if (key == 13 && todoText != "") {
+      if (todoText.length > 0 && todoText.length < maxTodoLength) {
         // Gen unique ID
         let uuid = (
           S4() +
@@ -267,7 +274,7 @@ function runApp(data) {
 
         todos[uuid] = {
           checked: false,
-          text: $("#todoInput").val()
+          text: todoText
         };
 
         localStorage.setItem("todos", JSON.stringify(todos));
@@ -286,6 +293,10 @@ function runApp(data) {
         span.className = "close";
         span.appendChild(text);
         li.appendChild(span);
+      } else if (todoText.length > maxTodoLength) {
+        alert(
+          "Todo length must be less than " + maxTodoLength + " characters!"
+        );
       }
 
       for (let i = 0; i < close.length; i++) {
